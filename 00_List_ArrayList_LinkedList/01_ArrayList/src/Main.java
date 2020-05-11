@@ -6,6 +6,7 @@ public class Main {
     private static GroceryList groceryList = new GroceryList();
 
 
+
     public static void main(String[] args) {
         boolean quit = false;
         int choice = 0;
@@ -43,6 +44,9 @@ public class Main {
                 case 7:
                     printCopyList();
                     break;
+                case 8:
+                    addItemShallowList();
+                    break;
             }
         }
     }
@@ -57,7 +61,7 @@ public class Main {
         System.out.println("\t 5 - Create list by using addAll");
         System.out.println("\t 6 - Create shallow copy array");
         System.out.println("\t 7 - Display all lists");
-        System.out.println("\t 8 - To quit the application");
+        System.out.println("\t 8 - Add item to shallow");
     }
 
     private static void addItem() {
@@ -117,6 +121,13 @@ public class Main {
         groceryList.showAddAllList();
         groceryList.showShallowList();
     }
+
+    private static void  addItemShallowList(){
+        System.out.println("Please enter the grocery item");
+        groceryList.addItemToShallow(scanner.nextLine());
+    }
+
+
 
 
 }
