@@ -1,8 +1,9 @@
 import java.util.HashMap;
-import java.util.Map;
+        import java.util.Map;
 
 public class Person {
 
+    //field final
     private final int personId;
     private final String name;
     private final Map<String, Integer> grades;
@@ -20,6 +21,9 @@ public class Person {
     }
 
     public Map<String, Integer> getExists() {
+        //returning a shallow copy of the Map...
+        //because the field are static cannot be accessed and modified
+        //more about shallow copied in the previous sections
         return new HashMap<>(grades);
     }
 
