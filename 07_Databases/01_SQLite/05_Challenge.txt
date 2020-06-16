@@ -1,0 +1,60 @@
+sqlite3 music.db
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE songs(_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL,album INTEGER);
+CREATE TABLE albums(_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
+CREATE TABLE artists(_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+---------------------------------------------------------------------------------------------------------------------
+//1 Select the title of all the songs on the album "Forbidden".
+
+SELECT songs.title FROM songs 				
+INNER JOIN albums ON songs.album=albums._id
+WHERE albums.name LIKE "forbidden"; 
+---------------------------------------------------------------------------------------------------------------------
+//2 Repeat the previous query but this time display the songs in track order.
+    You may want to include the track numver in the outpyut to veirfy that it worked ok.
+
+SELECT songs.title,songs.track FROM songs
+INNER JOIN albums ON songs.album=albums._id
+WHERE albums.name LIKE "forbidden" 
+ORDER BY songs.track;
+---------------------------------------------------------------------------------------------------------------------
+
+//3 Display all the songs for the band "Deep Purple"
+SELECT songs.track,songs.title FROM songs INNER JOIN
+albums ON songs.album=albums._id INNER JOIN
+artists ON albums.artist=artists._id 
+WHERE artists.name LIKE "Deep Purple";
+---------------------------------------------------------------------------------------------------------------------
+//4 Rename the band "Mehitabel" to "One Kitten". Note that this is an exception to the advice to always fully qualify your column names.
+    SET artist.name won't work, you just need to specify name.
+
+UPDATE artists SET name="One Kitten" WHERE name="Mehitabel";
+---------------------------------------------------------------------------------------------------------------------
+//5 Select the titles of all the songs by Aerosmith in alhpabetical order. Include only the title in the output
+
+SELECT songs.title FROM songs 
+INNER JOIN albums ON songs.album=albums._id
+INNER JOIN artists._id=albums.artist
+WHERE artists.name LIKE "aerosmith"
+ORDER BY songs.title;
+---------------------------------------------------------------------------------------------------------------------
+//6 Replace the column that you used in the previous answer with count(title) 
+    to get just a count of the numbef of songs
+
+SELECT count(songs.title) FROM songs 
+INNER JOIN albums ON songs.album=albums._id
+INNER JOIN artists ON albums.artist=artists._id
+WHERE artists.name = "Aerosmith";
+
+
+//7 Get a list of the songs from step 5 without any duplicates
+SELECT DISTINCT songs.title FROM songs
+INNER JOIN albums ON songs.album=albums._id
+INNER JOIN artists ON albums.artist=artists._id
+WHERE artist.name LIKE "aerosmith";
+
+//9 Get the count of the songs without duplicates.
+
+SELECT count(DISTINCT titile) FROM songs;
+
+

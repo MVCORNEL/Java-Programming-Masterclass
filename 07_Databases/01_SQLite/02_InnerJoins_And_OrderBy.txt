@@ -1,0 +1,36 @@
+sqlite3 music.db
+.backup musicbackup 		//Backup the database
+				//The order in the databse in undefined
+-----------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE songs(_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL,album INTEGER);
+CREATE TABLE albums(_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
+CREATE TABLE artists(_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT name FROM albums WHERE _id=367; 				//find the song with the id 367
+----------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO  artist (name) VALUES ("Beyonce");			//In sqlite primary key is AUTO INCREMENT by default
+----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM artists ORDER BY name;					//ORDER BY clause used to order base on the aplhabetical order of the name field
+SELECT * FROM songs ORDER BY title;					//ORDER BY clause, the recors appear in aplhabetical order of the title field(column)
+SELECT * FROM albums ORDER BY name COLLATE NOCASE; 			//ORTDER BY clause alphabetically but ignoring the case sensivity(UPPER OR LOWERCASE)
+SELECT * FROM albums ORDER BY name DESC; 				//ORDER BY clause alphabetically ordering descending form Z to A
+SELECT * FROM songs ORDER BY album,track,title;				//ORDER BY using multiple clauses
+--------------------------------------------------------------------------------------------------------------------
+SELECT songs.track,songs.title,albums.name FROM songs			//JOIN ON clause use to link 2 tables together, based on a common field.
+INNER JOIN albums ON songs.album=albums.id;				//JOIN short hand for INNER JOIN
+----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT track,title,name FROM songs 		 			//The same JOIN ON(INNER JOIN) clause simplified because there doesn't exist ambiguity
+JOIN albums ON album=albums.id;						//but is a good habit to always specify the table name especially in code.
+----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT songs.track,songs.title,albums.name 				//INNER JOIN -> 
+JOIN albums ON songs.album=albums.id;	
+-----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT artist.name,albums.name FROM artist,albums 			//INNER JOIN WITH ORDER CLAUSE
+INNER JOIN albums.artist=artists._id
+ORDER BY artist.name COLLATE NOCASE;
+-----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT artists.name,albums.name,songs.track,songs.title FROM songs 	//chain INNER JOIN clauses together
+INNER JOIN albums ON songs.album=albums._id
+INNER JOIN albums.artist=artist_id;
+-----------------------------------------------------------------------------------------------------------------------------------------------
+SELECT _id,title FROM songs WHERE _id>600 ORDER BY title;		//WHERE + ORDER BY clauses chained together

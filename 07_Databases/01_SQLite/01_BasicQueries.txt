@@ -1,0 +1,30 @@
+sqlite3  		//starts the shell program
+.quit 			//quits the sqllite shell
+sqlite3	test.db		//specify the name of the database on the command line
+.help 			//whole page with options available in sqlite3
+.headers on		//shows the column names at the start of the data which is a handy reminder on how we call the columns
+.backup testbackup  	//create a backup of the current database
+.restore testbackup	//restore the backup sesion with the name testbackup
+.tables			//show all tables in the database
+.schema			//prints out the structure of the table
+.dump			//show the transactions
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE contacts(name TEXT, phone INTEGER, email TEXT);	//create a basic table
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO contacts (name,phone,email) VALUES ("Bobo",2121221,"bobo@gmail.com"); 	//Insert a value into a table
+INSERT INTO contacts VALUES("Radu",223344,"radu@gmail.com");				//Insert into table by using the table order
+INSERT INTO contacts (name,email) VALUES ("Cosmin","cosimg@gmail.com");			//Insert by exluding a field is still valid
+INSERT INTO contacts ("Avril", "61(0)231 53432","avrila@gmail.com");			//Insert TEXT into an INTEGER field is allowed in sqlite
+------------------------------------------------------------------------------------------------------------------------------
+UPDATE contacts SET name="Bobo";  			//Update all name field in the table with the value of "Bobo", VERY CAREFULLY WITH THIS COMMAND
+UPDATE contacts SET phone=218629 WHERE name="Bobo";	//Update using WHERE clause
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+DELETE FROM contacts WHERE name="Bobo"; 		//Delete using where clause
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM contacts;					//Select all colums(fields) from that table
+SELECT name FROM contacts;				//Select all rows(records) from that particular field
+SELECT * FROM contacts WHERE name="Bobo"; 		//Select all using the where clause
+SELECT phone,email FROM contacts WHERE name="Bobo";	//Select multiple fields(colums)
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

@@ -1,0 +1,13 @@
+sqlite3 music.db
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE songs(_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL,album INTEGER);
+CREATE TABLE albums(_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
+CREATE TABLE artists(_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT * FROM songs WHERE _id <> 50;				//Find any record which is not equal to 50
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT count(*) FROM songs;					//Return how many record are present
+SELECT count(*) FROM albums;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//look for deep purple songs
